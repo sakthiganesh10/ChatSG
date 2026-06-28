@@ -136,8 +136,24 @@ const searchKeywords = [
 
 const safeMessage = message || "";
 
+const lowerMessage = safeMessage.toLowerCase();
+
+if (
+  lowerMessage.includes("who is your boss") ||
+  lowerMessage.includes("who created you") ||
+  lowerMessage.includes("who made you") ||
+  lowerMessage.includes("who is your owner")
+) {
+  res.json({
+    reply:
+      "My boss is S. Sakthi Ganesh. He created me. He lives in Chennai, Kolathur, GKM Colony 12th Street."
+  });
+
+  return;
+}
+
 const shouldSearch = searchKeywords.some(keyword =>
-  safeMessage.toLowerCase().includes(keyword)
+  lowerMessage.includes(keyword)
 );
 
 if (shouldSearch) {
