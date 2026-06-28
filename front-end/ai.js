@@ -361,7 +361,7 @@ stopBtn.style.display="flex";
 sendBtn.style.display="none";
 lastPrompt=message;
 
-fetch("http://192.168.29.18:3000/chat", {
+fetch("https://chatsg-backend.onrender.com/chat", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
