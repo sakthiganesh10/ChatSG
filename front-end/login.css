@@ -1,0 +1,298 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:#111;
+    overflow:hidden;
+}
+
+/* Animated background */
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 20%,#4f46e530,transparent 30%),
+    radial-gradient(circle at 80% 70%,#06b6d430,transparent 30%),
+    radial-gradient(circle at 60% 30%,#9333ea30,transparent 25%);
+    animation:bgMove 10s linear infinite alternate;
+}
+
+@keyframes bgMove{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.2) rotate(5deg);
+    }
+}
+
+.container{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    background:#1b1b1b;
+    overflow:hidden;
+    z-index:10;
+}
+
+.form-box{
+    position:absolute;
+    width:50%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.7s;
+}
+
+.form-box form{
+    width:80%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.form-box h1{
+    color:#fff;
+    margin-bottom:30px;
+    font-size:40px;
+}
+
+.google-btn{
+    width:100%;
+    height:55px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:600;
+    background:#fff;
+    color:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    transition:.3s;
+}
+
+.google-btn:hover{
+    transform:translateY(-3px);
+}
+
+.form-box p{
+    margin-top:25px;
+    color:#bdbdbd;
+}
+
+.sign-in{
+    left:0;
+}
+
+.sign-up{
+    right:0;
+    opacity:0;
+    pointer-events:none;
+}
+
+/* Right panel */
+
+.toggle-box{
+    position:absolute;
+    width:50%;
+    height:100%;
+    right:0;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    border-radius:120px 0 0 120px;
+    transition:.7s;
+}
+
+.toggle-panel{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    padding:40px;
+    text-align:center;
+}
+
+.toggle-panel h1{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.toggle-panel p{
+    margin-bottom:25px;
+}
+
+.toggle-panel button{
+    width:180px;
+    height:50px;
+    border:2px solid #fff;
+    background:transparent;
+    color:#fff;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.toggle-panel button:hover{
+    background:#fff;
+    color:#111;
+}
+
+/* Animation */
+
+.container.active .toggle-box{
+    right:50%;
+    border-radius:0 120px 120px 0;
+}
+
+.container.active .sign-in{
+    left:50%;
+}
+
+.container.active .sign-up{
+    right:50%;
+    opacity:1;
+    pointer-events:auto;
+}
+
+.container.active .toggle-left{
+    display:flex;
+}
+
+.container.active .toggle-right{
+    display:none;
+}
+
+.toggle-left{
+    display:none;
+}
+
+.toggle-right{
+    display:flex;
+}
+
+/* ================= LOGIN RESPONSIVE ================= */
+@media (max-width: 768px){
+
+  .container{
+    width:100vw;
+    height:100vh;
+  }
+
+  .form-box{
+    width:100%;
+    height:65%;
+    bottom:0;
+  }
+
+  .form-box form{
+    width:82%;
+  }
+
+  .form-box h1{
+    font-size:32px;
+  }
+
+  .google-btn{
+    height:52px;
+    font-size:15px;
+  }
+
+  .sign-in{
+    left:0;
+    top:35%;
+  }
+
+  .sign-up{
+    left:0;
+    top:35%;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .toggle-box{
+    width:100%;
+    height:35%;
+    top:0;
+    right:0;
+    border-radius:0 0 70px 70px;
+  }
+
+  .toggle-panel{
+    padding:25px;
+  }
+
+  .toggle-panel h1{
+    font-size:30px;
+  }
+
+  .toggle-panel p{
+    font-size:14px;
+  }
+
+  .toggle-panel button{
+    width:145px;
+    height:44px;
+  }
+
+  .container.active .toggle-box{
+    right:0;
+    top:65%;
+    border-radius:70px 70px 0 0;
+  }
+
+  .container.active .sign-in{
+    left:0;
+    top:0;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .container.active .sign-up{
+    left:0;
+    top:0;
+    opacity:1;
+    pointer-events:auto;
+  }
+}
+
+@media (max-width: 480px){
+
+  .form-box h1{
+    font-size:28px;
+  }
+
+  .form-box p{
+    font-size:13px;
+    text-align:center;
+  }
+
+  .toggle-panel h1{
+    font-size:26px;
+  }
+
+  .toggle-panel p{
+    font-size:13px;
+  }
+
+  .google-btn{
+    font-size:14px;
+  }
+}

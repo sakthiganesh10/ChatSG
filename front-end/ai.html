@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHATBOT</title>
+    <link rel="stylesheet" href="ai.css">
+</head>
+<body>
+    <section>
+
+ <div class="loader" id="loader">
+  <div class="loader-stars"></div>
+
+  <div class="scan-line"></div>
+
+  <div class="vortex-wrap">
+    <div class="orbit orbit1"></div>
+    <div class="orbit orbit2"></div>
+    <div class="orbit orbit3"></div>
+
+    <img src="images/loading-screen-img.png" class="loader-logo" id="loaderLogo">
+  </div>
+
+  <div class="loader-status" id="loaderStatus">Starting ChatSG...</div>
+  <div class="loader-percent" id="loaderPercent">1%</div>
+</div>
+
+<button id="authBtn" class="sign-out-btn">
+  <i class="fa-solid fa-right-to-bracket"></i>
+  Sign in
+</button>
+
+<button id="mobileMenuBtn" class="mobile-menu-btn">
+  <i class="fa-solid fa-bars"></i>
+</button>
+
+
+  <!-- <div class="loader-overlay">
+    <h1>ChatSG</h1>
+    <p>Initializing AI...</p>
+  </div> -->
+ 
+
+
+      <div class="sidebar">
+        <div class="sidebar-top">
+  <div class="brand-logo">ChatSG</div>
+ <button id="toggleSidebar">
+    <i class="fa-solid fa-bars"></i>
+</button>
+</div>
+
+  <div class="side-item" id="newChatBtn"><i class="fa-regular fa-pen-to-square"></i>
+<span>New chat</span></div>
+  <div class="side-item" id="searchChatBtn"><i class="fa-solid fa-magnifying-glass"></i>
+<span>Search chats</span></div>
+
+  <div class="search-box" id="searchBox">
+    <input type="text" id="chatSearch" placeholder="Search chats...">
+  </div>
+
+  <div class="side-item" id="themeToggle">
+  <i class="fa-solid fa-moon"></i>
+  <span>Night mode</span>
+</div>
+
+  <h3 class="recents-title" id="recentsToggle">
+  Recents <i
+  id="recentsArrow"
+  class="fa-solid fa-chevron-down"
+></i>
+</h3>
+
+<div id="chatList" class="collapsed"></div>
+
+<div class="user-profile">
+  <img id="profilePhoto" class="avatar-img" src="">
+  <div class="user-info">
+    <h4 id="profileName">Ganesh</h4>
+    <p id="profileEmail">ganesh@gmail.com</p>
+  </div>
+</div>
+<div class="profile-popup" id="profilePopup">
+  <div class="popup-user">
+    <img id="popupPhoto" src="">
+    <div>
+      <h4 id="popupName">Ganesh</h4>
+      <p id="popupEmail">gmail.com</p>
+    </div>
+  </div>
+
+  <div class="popup-line"></div>
+
+  <div class="popup-item" id="popupSettings">
+  <i class="fa-solid fa-gear"></i>
+  Settings
+</div>
+
+  <div class="popup-item" id="popupTheme">
+    <i class="fa-solid fa-moon"></i>
+    Theme
+  </div>
+
+  <div class="popup-item danger" id="popupSignOut">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Sign out
+  </div>
+</div>
+
+</div>
+
+        <div class="chat-container">
+    <div class="greeting" id="greeting"></div>
+    <div class="messages" id="messages"></div>
+  </div>
+
+  
+      
+    <div class="typebox">
+  <div class="plus-btn"><i class="fa-solid fa-plus"></i></div>
+
+  <input type="file" id="fileInput" hidden accept="image/*,.pdf,.doc,.docx,.txt">
+
+  <div class="voice-record-ui" id="voiceRecordUI">
+  <div class="record-dots"></div>
+  <div class="wave">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <button class="cancel-voice" id="cancelVoice">×</button>
+  <button class="confirm-voice" id="confirmVoice">✓</button>
+</div>
+        <textarea placeholder="Ask anything"></textarea>
+          <div class="actions">
+    <div class="mic"><i class="fa-solid fa-microphone"></i></div>
+    <div class="send"><i class="fa-solid fa-arrow-up"></i></div>
+    <div class="stop" style="display:none;">
+    <i class="fa-solid fa-stop"></i>
+</div>
+  </div>
+         <div class="menu">
+   <div id="uploadFileBtn"><i class="fa-solid fa-link"></i>Upload files</div>
+    <div><i class="fa-regular fa-image"></i>  Create image</div>
+    <div><i class="fa-solid fa-brain"></i>Thinking</div>
+    <div><i class="fa-light fa-atom"></i> Deep research</div>
+    <div><i class="fa-light fa-ellipsis"></i> More</div>
+  </div>
+    </div>
+
+    <div class="search-modal" id="searchModal">
+
+  <div class="search-popup">
+
+    <div class="search-header">
+      <input
+        type="text"
+        id="globalChatSearch"
+        placeholder="Search chats..."
+      >
+
+      <span id="closeSearch">✕</span>
+    </div>
+
+    <div id="searchResults"></div>
+
+  </div>
+
+</div>
+
+<div class="settings-modal" id="settingsModal">
+  <div class="settings-panel">
+    <div class="settings-header">
+      <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+      <button id="closeSettings">×</button>
+    </div>
+
+    <div class="settings-section">
+      <h3>Appearance</h3>
+
+      <div class="setting-row">
+        <span><i class="fa-solid fa-moon"></i> Theme</span>
+        <select id="settingTheme">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+      </div>
+
+      <div class="setting-row">
+        <span><i class="fa-solid fa-font"></i> Font Size</span>
+        <select id="settingFontSize">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <h3>Chat</h3>
+
+      <div class="setting-row">
+        <span><i class="fa-solid fa-trash"></i> Clear All Chats</span>
+        <button id="clearAllChats">Clear</button>
+      </div>
+
+      <div class="setting-row">
+        <span><i class="fa-solid fa-floppy-disk"></i> Auto Save</span>
+        <input type="checkbox" id="autoSaveToggle" checked>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <h3>AI</h3>
+
+      <div class="setting-row">
+        <span><i class="fa-solid fa-brain"></i> Response Style</span>
+        <select id="responseStyle">
+          <option value="short">Short</option>
+          <option value="normal" selected>Normal</option>
+          <option value="detailed">Detailed</option>
+        </select>
+      </div>
+
+      <div class="setting-row">
+        <span><i class="fa-solid fa-language"></i> Default Language</span>
+        <select id="defaultLanguage">
+          <option value="english">English</option>
+          <option value="tanglish">Tanglish</option>
+          <option value="tamil">Tamil</option>
+          <option value="auto">Auto</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <h3>Account</h3>
+      <p id="settingsName">Name</p>
+      <p id="settingsEmail">Email</p>
+    </div>
+  </div>
+</div>
+
+    </section>
+   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="ai.js"></script>
+<script src="https://kit.fontawesome.com/4ab3f77f9d.js" crossorigin="anonymous"></script>
+</body>
+</html>
