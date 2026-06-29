@@ -56,3 +56,6 @@ async function loginWithGoogle() {
 
 googleLogin.addEventListener("click", loginWithGoogle);
 googleSignup.addEventListener("click", loginWithGoogle);
+
+
+
